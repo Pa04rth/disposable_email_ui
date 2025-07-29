@@ -5,13 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Mail, ArrowRight, Loader2 } from "lucide-react";
-import { EmailDashboard } from "./EmailDashboard"; // Assuming EmailDashboardProps is exported from here
+import { Mail, ArrowRight } from "lucide-react";
+import { EmailDashboard } from "./EmailDashboard";
 import { EmailData } from "@/components/EmailCard";
 
 const DeviceVerification = () => {
   const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const [selectedEmail, setSelectedEmail] = useState<EmailData | null>(null);
@@ -22,7 +21,7 @@ const DeviceVerification = () => {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email.trim()) {
@@ -35,37 +34,16 @@ const DeviceVerification = () => {
       return;
     }
 
-    setIsLoading(true);
-    setError("");
+    setError(""); // Clear previous errors
 
-    try {
-      // Replace this URL with your actual backend API endpoint
-      const response = await fetch("/api/verify-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+    // Check if the domain is luxidevilott.com for verification
+    const domain = email.split("@")[1];
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      if (data.success) {
-        setIsVerified(true);
-        // Store the email in localStorage for the EmailDashboard to use
-        localStorage.setItem("verifiedEmail", email);
-      } else {
-        setError(data.message || "Email verification failed");
-      }
-    } catch (error) {
-      console.error("Error verifying email:", error);
-      setError("Failed to verify email. Please try again.");
-    } finally {
-      setIsLoading(false);
+    if (domain === "luxidevilott.com") {
+      setIsVerified(true);
+      localStorage.setItem("verifiedEmail", email);
+    } else {
+      setError("Email verification failed. The provided email is not allowed.");
     }
   };
 
@@ -128,7 +106,6 @@ const DeviceVerification = () => {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={isLoading}
                 className="w-full"
               />
             </div>
@@ -139,18 +116,9 @@ const DeviceVerification = () => {
               </Alert>
             )}
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Verifying...
-                </>
-              ) : (
-                <>
-                  Submit
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </>
-              )}
+            <Button type="submit" className="w-full">
+              Submit
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </form>
 
