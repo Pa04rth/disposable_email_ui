@@ -6,7 +6,7 @@ const { google } = require("googleapis");
 const cors = require("cors");
 
 const app = express();
-app.use(cors()); // It's good practice to keep this
+app.use(cors());
 
 // --- Authentication Setup ---
 const oauth2Client = new google.auth.OAuth2(
@@ -21,7 +21,7 @@ oauth2Client.setCredentials({
 const gmail = google.gmail({ version: "v1", auth: oauth2Client });
 
 // --- API Endpoint ---
-// The path becomes /api because of the folder name.
+// Note: The route is '/' because the filename `index.js` handles the /api part.
 app.get("/", async (req, res) => {
   const targetEmail = req.query.to;
 
@@ -29,28 +29,21 @@ app.get("/", async (req, res) => {
     return res.status(400).json({ error: "Target email is required" });
   }
 
+  // ... (The entire try/catch block for fetching emails remains exactly the same)
   try {
     const searchResponse = await gmail.users.messages.list({
       userId: "me",
       q: `to:${targetEmail}`,
       maxResults: 50,
     });
-
     const messages = searchResponse.data.messages;
     if (!messages || messages.length === 0) {
       return res.json([]);
     }
-
-    const emailPromises = messages.map((msg) => {
-      return gmail.users.messages.get({
-        userId: "me",
-        id: msg.id,
-        format: "full",
-      });
-    });
-
+    const emailPromises = messages.map((msg) =>
+      gmail.users.messages.get({ userId: "me", id: msg.id, format: "full" })
+    );
     const emailResponses = await Promise.all(emailPromises);
-
     const formattedEmails = emailResponses.map((response) => {
       const detail = response.data;
       const headers = detail.payload.headers;
@@ -83,7 +76,6 @@ app.get("/", async (req, res) => {
         isRead: !detail.labelIds.includes("UNREAD"),
       };
     });
-
     res.json(formattedEmails);
   } catch (error) {
     console.error("Error fetching from Gmail API:", error);
@@ -91,6 +83,16 @@ app.get("/", async (req, res) => {
   }
 });
 
-// THIS IS THE CRUCIAL CHANGE
-// We no longer listen on a port. We export the app for Vercel.
+// --- THIS IS THE NEW PART FOR LOCAL TESTING ---
+// It checks if the file is being run directly with `node`
+// If it is, it starts a server. If Vercel imports it, this block is ignored.
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(
+      `Backend server ready for local development at http://localhost:${PORT}`
+    );
+  });
+}
+
 module.exports = app;

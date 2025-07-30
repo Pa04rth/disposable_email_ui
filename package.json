@@ -1,4 +1,12 @@
 {
   "name": "email-viewer-monorepo",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "scripts": {
+    "start:api": "node api/index.js",
+    "start:frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm:start:*\""
+  }
 }

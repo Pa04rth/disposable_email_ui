@@ -28,10 +28,9 @@ const EmailDashboard = () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Fetch from your backend, not directly from Google
-      // The URL is now relative. It points to the /api endpoint on the SAME domain.
+      const apiUrl = import.meta.env.DEV ? "http://localhost:3001" : "";
       const response = await fetch(
-        `/api?to=${encodeURIComponent(emailAddress)}`
+        `${apiUrl}/api?to=${encodeURIComponent(emailAddress)}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch emails from server.");
