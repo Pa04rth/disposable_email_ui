@@ -1,6 +1,9 @@
 // File: /api/index.js
 
-require("dotenv").config();
+const path = require("path"); // Import Node.js's built-in path module
+// Give dotenv the explicit path to your .env file
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+
 const express = require("express");
 const { google } = require("googleapis");
 const cors = require("cors");
