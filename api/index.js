@@ -22,7 +22,7 @@ const gmail = google.gmail({ version: "v1", auth: oauth2Client });
 
 // --- API Endpoint ---
 // The path becomes /api because of the folder name.
-app.get("/api", async (req, res) => {
+app.get("/", async (req, res) => {
   const targetEmail = req.query.to;
 
   if (!targetEmail) {
