@@ -1,22 +1,15 @@
 {
-  "name": "my-email-backend",
+  "name": "api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "googleapis": "^154.1.0",
-    "http": "^0.0.1-security",
-    "open": "^7.4.2",
-    "server-destroy": "^1.0.1",
-    "url": "^0.11.4"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "google-auth-library": "^9.10.0",
+    "googleapis": "^137.1.0"
   }
 }
