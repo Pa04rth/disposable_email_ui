@@ -20,16 +20,14 @@ oauth2Client.setCredentials({
 
 const gmail = google.gmail({ version: "v1", auth: oauth2Client });
 
-// --- API Endpoint ---
-// Note: The route is '/' because the filename `index.js` handles the /api part.
-app.get("/", async (req, res) => {
+// --- THIS IS THE CORRECTED API ENDPOINT ---
+app.get("/api", async (req, res) => {
   const targetEmail = req.query.to;
 
   if (!targetEmail) {
     return res.status(400).json({ error: "Target email is required" });
   }
 
-  // ... (The entire try/catch block for fetching emails remains exactly the same)
   try {
     const searchResponse = await gmail.users.messages.list({
       userId: "me",
@@ -83,9 +81,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-// --- THIS IS THE NEW PART FOR LOCAL TESTING ---
-// It checks if the file is being run directly with `node`
-// If it is, it starts a server. If Vercel imports it, this block is ignored.
+// This part for local testing remains unchanged and correct.
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
