@@ -2,10 +2,26 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const cardData = [
-  { name: "Netflix", color: "bg-red-700" },
-  { name: "Crunchyroll", color: "bg-orange-600" },
-  { name: "You Premium", color: "bg-red-600" },
-  { name: "Prime", color: "bg-sky-500" },
+  {
+    name: "Netflix",
+    color: "bg-red-700",
+    img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+  },
+  {
+    name: "Crunchyroll",
+    color: "bg-orange-600",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFeI4_W3nhfBiQ5dHQdV6_wt3tpKkV14cdw&s"
+  },
+  {
+    name: "Youtube Premium",
+    color: "bg-red-600",
+    img: "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"
+  },
+  {
+    name: "Prime",
+    color: "bg-sky-500",
+    img: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
+  },
 ];
 
 const Cards = () => {
@@ -23,10 +39,16 @@ const Cards = () => {
         {cardData.map((card) => (
           <div
             key={card.name}
-            className={`cursor-pointer rounded-xl shadow-lg p-8 flex flex-col items-center justify-center text-white text-xl font-semibold transition-transform hover:scale-105 ${card.color}`}
+            className={`cursor-pointer rounded-xl shadow-lg flex flex-col items-center justify-between text-white text-xl font-semibold transition-transform hover:scale-105 ${card.color}`}
+            style={{ minHeight: 200, padding: 0 }}
             onClick={() => handleCardClick(card.color)}
           >
-            {card.name}
+            <div className="w-full flex justify-center items-center bg-white rounded-t-xl" style={{ height: 110 }}>
+              <img src={card.img} alt={card.name} className="h-16 w-16 object-contain" />
+            </div>
+            <div className="w-full flex items-center justify-center py-6 rounded-b-xl">
+              <span className="text-xl font-bold">{card.name}</span>
+            </div>
           </div>
         ))}
       </div>
