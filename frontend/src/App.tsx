@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DeviceVerification from "./pages/deviceVerification";
 import EmailDashboard from "./pages/EmailDashboard"; // Import the updated dashboard
 import NotFound from "./pages/NotFound";
+import Cards from "./pages/Cards";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DeviceVerification />} />
+          <Route path="/" element={<Cards/>}/>
+          <Route path="/verification" element={<DeviceVerification />} />
           <Route path="/dashboard/:emailAddress" element={<EmailDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
