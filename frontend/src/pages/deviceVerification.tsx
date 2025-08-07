@@ -30,8 +30,8 @@ const DeviceVerification = () => {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center p-4`}>
-      <Card className="w-full max-w-md">
+    <div className={`min-h-screen bg-background flex items-center justify-center p-4`}>
+      <Card className={`w-full max-w-md`}>
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <Mail className={`h-12 w-12 ${bgColor} rounded-full p-2`} />
@@ -48,7 +48,7 @@ const DeviceVerification = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="e.g., parth@luxidevilott.com"
+                placeholder="Enter your mail"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full"
