@@ -10,7 +10,7 @@ const cardData = [
   {
     name: "Crunchyroll",
     color: "bg-orange-600",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFeI4_W3nhfBiQ5dHQdV6_wt3tpKkV14cdw&s"
+    img: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Crunchyroll_logo_2018_vertical.png"
   },
   {
     name: "Youtube Premium",
