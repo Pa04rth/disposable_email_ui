@@ -129,10 +129,10 @@ const EmailDashboard = () => {
           </p>
         </CardHeader>
         <CardContent>
-          <div
+          {/* <div
             className="prose max-w-none"
             dangerouslySetInnerHTML={{ __html: selectedEmail.body }}
-          />
+          /> */}
         </CardContent>
       </Card>
     </div>
