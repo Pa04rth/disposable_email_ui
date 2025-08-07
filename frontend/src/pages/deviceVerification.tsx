@@ -48,7 +48,7 @@ const DeviceVerification = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your Mail address"
+                placeholder="e.g., parth@luxidevilott.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full"
