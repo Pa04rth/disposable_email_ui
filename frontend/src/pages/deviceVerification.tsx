@@ -34,7 +34,7 @@ const DeviceVerification = () => {
       <Card className={`w-full max-w-md`}>
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <Mail className="h-12 w-12 text-primary" />
+            <Mail className={`h-12 w-12 ${bgColor} rounded-full p-2`} />
           </div>
           <CardTitle className="text-2xl">Disposable Email Viewer</CardTitle>
           <p className="text-muted-foreground">
@@ -61,7 +61,7 @@ const DeviceVerification = () => {
               </Alert>
             )}
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className={`w-full ${bgColor} text-white`}>
               View Inbox
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
