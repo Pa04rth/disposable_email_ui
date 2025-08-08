@@ -28,8 +28,8 @@ const Cards = () => {
   const navigate = useNavigate();
 
 
-  const handleCardClick = (color: string) => {
-    navigate("/verification", { state: { bgColor: color } });
+  const handleCardClick = (name,color: string) => {
+    navigate(`/${encodeURIComponent(name)}/verification`, { state: { bgColor: color } });
   };
 
   return (
@@ -41,7 +41,7 @@ const Cards = () => {
             key={card.name}
             className={`cursor-pointer rounded-xl shadow-lg flex flex-col items-center justify-between text-white text-xl font-semibold transition-transform hover:scale-105 ${card.color}`}
             style={{ minHeight: 200, padding: 0 }}
-            onClick={() => handleCardClick(card.color)}
+            onClick={() => handleCardClick(card.name,card.color)}
           >
             <div className="w-full flex justify-center items-center bg-white rounded-t-xl" style={{ height: 110 }}>
               <img src={card.img} alt={card.name} className="h-16 w-16 object-contain" />
@@ -52,6 +52,15 @@ const Cards = () => {
           </div>
         ))}
       </div>
+      <footer className="w-full flex justify-center items-center py-6 mt-12 bg-gray-100 border-t">
+        <button
+          className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+          onClick={() => window.open('https://wa.me/6392847684', '_blank')}
+        >
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="h-6 w-6" />
+          Chat on WhatsApp
+        </button>
+      </footer>
     </div>
   );
 };

@@ -18,7 +18,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Cards/>}/>
-          <Route path="/verification" element={<DeviceVerification />} />
+          <Route path="/:name/verification" element={<DeviceVerification />} />
           <Route path="/dashboard/:emailAddress" element={<EmailDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
