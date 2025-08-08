@@ -55,7 +55,7 @@ const Cards = () => {
       <footer className="w-full flex justify-center items-center py-6 mt-12 bg-gray-100 border-t">
         <button
           className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
-          onClick={() => window.open(`https://wa.me/6392847684?text=${encodeURIComponent("Hi! I'm interested in your subscription services.")}`, '_blank')}
+          onClick={() => window.open(`https://wa.me/9890938795?text=${encodeURIComponent("Hi! I'm interested in your subscription services.")}`, '_blank')}
         >
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="h-6 w-6" />
           Chat on WhatsApp
