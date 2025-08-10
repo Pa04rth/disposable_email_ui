@@ -12,6 +12,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, RefreshCw } from "lucide-react";
+import DOMPurify from "dompurify";
+import parse from "html-react-parser";
+
+interface SafeEmailBodyProps {
+  htmlContent: string;
+}
+
+const SafeEmailBody: React.FC<SafeEmailBodyProps> = ({ htmlContent }) => {
+  // Sanitize the HTML string to prevent XSS
+  const cleanHTML: string = DOMPurify.sanitize(htmlContent);
+
+  // Convert sanitized HTML into React elements
+  return <div className="prose max-w-none">{parse(cleanHTML)}</div>;
+};
 const EmailDashboard = () => {
   const [emails, setEmails] = useState<FetchedEmail[]>([]);
   const [selectedEmail, setSelectedEmail] = useState<FetchedEmail | null>(null);
@@ -129,10 +143,7 @@ const EmailDashboard = () => {
           </p>
         </CardHeader>
         <CardContent>
-          {/* <div
-            className="prose max-w-none"
-            dangerouslySetInnerHTML={{ __html: selectedEmail.body }}
-          /> */}
+          <SafeEmailBody htmlContent={selectedEmail.body} />
         </CardContent>
       </Card>
     </div>
