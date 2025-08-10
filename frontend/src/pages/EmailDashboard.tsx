@@ -23,9 +23,41 @@ const SafeEmailBody: React.FC<SafeEmailBodyProps> = ({ htmlContent }) => {
   // Sanitize the HTML string to prevent XSS
   const cleanHTML: string = DOMPurify.sanitize(htmlContent);
 
-  // Convert sanitized HTML into React elements
-  return <div className="prose max-w-none">{parse(cleanHTML)}</div>;
-};
+  return (
+    <div
+      className="w-full h-auto overflow-x-auto prose max-w-none"
+      style={{
+        wordBreak: "break-word",
+        overflowWrap: "break-word",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        {parse(cleanHTML)}
+      </div>
+
+      {/* Extra CSS to make embedded content responsive */}
+      <style>{`
+        .prose img {
+          max-width: 100%;
+          height: auto;
+        }
+        .prose table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        .prose iframe, .prose video {
+          max-width: 100%;
+          height: auto;
+        }
+      `}</style>
+    </div>
+  );
+};;
 const EmailDashboard = () => {
   const [emails, setEmails] = useState<FetchedEmail[]>([]);
   const [selectedEmail, setSelectedEmail] = useState<FetchedEmail | null>(null);
