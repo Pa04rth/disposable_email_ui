@@ -17,8 +17,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Cards/>}/>
-          <Route path="/:name/verification" element={<DeviceVerification />} />
+          
+          <Route path="/" element={<DeviceVerification />} />
           <Route path="/dashboard/:emailAddress" element={<EmailDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
