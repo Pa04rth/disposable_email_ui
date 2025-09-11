@@ -5,22 +5,22 @@ const cardData = [
   {
     name: "Netflix",
     color: "bg-red-700",
-    img: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+    img: "/images/netmirror.jpg"
   },
   {
     name: "Crunchyroll",
     color: "bg-orange-600",
-    // img: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Crunchyroll_logo_2018_vertical.png"
+    img: "/images/crunchyroll.png"
   },
   {
     name: "Youtube Premium",
     color: "bg-red-600",
-    img: "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"
+    img: "/images/youtube.png"
   },
   {
     name: "Prime",
     color: "bg-sky-500",
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
+    img: "/images/prime2.png"
   },
 ];
 
