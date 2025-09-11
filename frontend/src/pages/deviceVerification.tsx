@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Mail, ArrowRight } from "lucide-react";
 
-
 const DeviceVerification = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +17,14 @@ const DeviceVerification = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim() || !email.includes("@luxidevilott.com")) {
+    if (
+      !email.trim() ||
+      !(
+        email.includes("@luxidevilott.com") ||
+        email.includes("@devilott.store") ||
+        email.includes("@devilott.site")
+      )
+    ) {
       setError(
         "Please enter a valid email address from the luxidevilott.com domain."
       );
@@ -30,7 +36,9 @@ const DeviceVerification = () => {
   };
 
   return (
-    <div className={`min-h-screen bg-background flex items-center justify-center p-4`}>
+    <div
+      className={`min-h-screen bg-background flex items-center justify-center p-4`}
+    >
       <Card className={`w-full max-w-md`}>
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
