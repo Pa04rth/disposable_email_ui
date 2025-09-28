@@ -33,23 +33,11 @@ const Cards = () => {
   };
 
   return (
-    <div className="p-8 min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <h1 className="text-3xl font-bold mb-4">Choose a Service</h1>
-      <div className="flex gap-4 mb-6">
-        <button 
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-          onClick={() => window.open(`https://t.me/Luxuriousdevilott?text=${encodeURIComponent(`Hi I am interested to buy in bulk`)}`, '_blank')}
-        >
-          Buy on Telegram
-        </button>
-        <button 
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
-          onClick={() => window.open(`https://wa.me/9890938795?text=${encodeURIComponent(`Hi I am interested to buy in bulk`)}`, '_blank')}
-        >
-          Buy on WhatsApp
-        </button>
+    <div className="min-h-screen w-full bg-gray-50 flex flex-col items-center">
+      <div className="w-full max-w-5xl px-6 py-10 flex flex-col items-center">
+        <h1 className="text-4xl font-extrabold tracking-tight mb-10 text-gray-900">Choose a Service</h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-2xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl px-6">
         {cardData.map((card) => (
           <div
             key={card.name}
@@ -66,23 +54,7 @@ const Cards = () => {
           </div>
         ))}
       </div>
-      <footer className="w-full flex justify-center items-center py-6 mt-12 bg-gray-100 border-t">
-        <button
-          className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
-          onClick={() => window.open(`https://wa.me/9890938795?text=${encodeURIComponent("Hi! I'm interested in your subscription services.")}`, '_blank')}
-        >
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" className="h-6 w-6" />
-          Chat on WhatsApp
-        </button>
-
-        <button
-          className="flex items-center gap-2 px-4 py-2 m-3 bg-telegram  text-white rounded-lg shadow hover:bg-blue-500 transition"
-          onClick={() => window.open(`https://wa.me/9890938795?text=${encodeURIComponent("Hi I am interested to buy in bulk")}`, '_blank')}
-        >
-          <img src="/images/telegram.png" alt="WhatsApp" className="h-6 w-6" />
-          Chat on Telegram
-        </button>
-      </footer>
+      {/* Footer removed per request (no WhatsApp/Telegram buttons) */}
     </div>
   );
 };
