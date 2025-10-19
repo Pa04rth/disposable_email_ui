@@ -7,6 +7,7 @@ import DeviceVerification from "./pages/deviceVerification";
 import EmailDashboard from "./pages/EmailDashboard"; // Import the updated dashboard
 import NotFound from "./pages/NotFound";
 import Cards from "./pages/Cards";
+import Search from "./pages/Search";
 
 const queryClient = new QueryClient();
 
@@ -17,12 +18,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Cards/>}/>
+          <Route path="/" element={<Cards />} />
           <Route path="/:name/verification" element={<DeviceVerification />} />
           <Route path="/dashboard/:emailAddress" element={<EmailDashboard />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
-      </BrowserRouter> 
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
