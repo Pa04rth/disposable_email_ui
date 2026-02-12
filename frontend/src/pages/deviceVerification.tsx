@@ -12,56 +12,35 @@ const DeviceVerification = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+
   // Get bgColor from navigation state, fallback to default
   const bgColor = location.state?.bgColor || "bg-background";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      !email.trim() ||
-      !(
-        email.includes("@luxidevilott.com") ||
-        email.includes("@devilott.store") ||
-        email.includes("@devilott.site") ||
-        email.includes("@devilott.art") ||
-        email.includes("@devilott.online") ||
-        email.includes("@devilott.live") ||
-        email.includes("@voucherskingdom.autos") ||
-        email.includes("@voucherskingdom.bar") ||
-        email.includes("@voucherskingdom.boats") ||
-        email.includes("@voucherskingdom.casa") ||
-        email.includes("@voucherskingdom.cyou") ||
-        email.includes("@voucherskingdom.live") ||
-        email.includes("@voucherskingdom.lol") ||
-        email.includes("@voucherskingdom.monster") ||
-        email.includes("@voucherskingdom.online") ||
-        email.includes("@voucherskingdom.rest") ||
-        email.includes("@voucherskingdom.shop") ||
-        email.includes("@voucherskingdom.site") ||
-        email.includes("@voucherskingdom.space") ||
-        email.includes("@voucherskingdom.store") ||
-        email.includes("@voucherskingdom.xyz") ||
-        email.includes("@vouchersskingdom.online") ||
-        email.includes("@vouchersskingdom.site") ||
-        email.includes("@vouchersskingdom.space") ||
-        email.includes("@vouchersskingdom.store") ||
-        email.includes("@vouchersskingdom.xyz") 
-      )
-    ) {
-      setError(
-        "Please enter a valid email address from the luxidevilott.com domain."
-      );
+
+    const trimmed = email.trim();
+
+    if (!trimmed) {
+      setError("Please enter your email address.");
       return;
     }
+
+    // Simple, reliable email format check (accepts all domains)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmed)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     setError("");
-    // Navigate to the dashboard and pass the email in the URL state
-    navigate(`/dashboard/${email}`);
+
+    // Encode email so special characters don't break the route
+    navigate(`/dashboard/${encodeURIComponent(trimmed)}`);
   };
 
   return (
-    <div
-      className={`min-h-screen bg-background flex flex-col items-center justify-center p-4`}
-    >
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
       <div className="flex gap-4 mb-6">
         <Button
           onClick={() =>
@@ -90,24 +69,26 @@ const DeviceVerification = () => {
           Buy on WhatsApp
         </Button>
       </div>
-      <Card className={`w-full max-w-md`}>
+
+      <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <Mail className={`h-12 w-12 ${bgColor} rounded-full p-2`} />
           </div>
           <CardTitle className="text-2xl">Disposable Email Viewer</CardTitle>
           <p className="text-muted-foreground">
-            Enter your temporary email address to view its inbox.
+            Enter your email address to view its inbox.
           </p>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Temporary Email Address</Label>
+              <Label htmlFor="email">Email Address</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your mail"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full"
